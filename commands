@@ -1,26 +1,34 @@
+----yaml file preparation ---------------
 #This sample yaml used to deploy pods/deployment/service/replicaset
 #below are parameters which are mandatory to add to yaml file
 
-apiversion: #k8s appropriate version  
+1.apiversion: #k8s appropriate version  
   -- for pod and service = v1 
   -- for deployment and replicaset = app/v1
-kind:       #need to specify which kind like is it 'pod' or 'service' or 'deployment' or 'replicaset'
-metadata:   #type of dictionary where provide name of pod and lables
-spec:       #used to mention container name and image
+2.kind:       #need to specify which kind like is it 'pod' or 'service' or 'deployment' or 'replicaset'
+3.metadata:   #type of dictionary where provide name of pod and lables
+4.spec:       #used to mention container name and image
 
 Example:
 apiversion:  v1
-kind:  pod
-metadata:
+kind:  Pod    #case sensitive
+metadata: #dictionary
   name:  myapp-pod
-  labels:
+  labels:        #dictonary
     name:  myapp
     type:  front-end
 spec:
-  containers: 
-    - name:  nginx-container
+  containers:  #list
+    - name:  nginx-container    # '-' indicates first item in list
       image: nginx
------------------------------------------
+    - name: busybox-container
+      image: busybox
+-----------------Commands------------------------
 kubectl create -f <yaml filename> #need to create yaml file with pod details
-kubctl get pods
-kubctl describe pod <podname>
+OR 
+kubectl apply -f <yaml file name>
+kubectl get pods
+kubectl describe pod <podname>
+--------------------------------------------------
+
+
