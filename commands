@@ -10,7 +10,7 @@
 4.spec:       #used to mention container name and image
 
 Example:
-apiversion:  v1
+apiVersion:  v1
 kind:  Pod    #case sensitive
 metadata: #dictionary
   name:  myapp-pod
@@ -38,5 +38,69 @@ kubectl run redis --image=redis --dry-run=client -o yaml>redis.yaml      #create
 kubectl create -f redis.yaml
 
 --------------------------------------------------
+Replication controller:
+
+apiVersion:  v1
+kind:  ReplicationController    #case sensitive
+metadata:    ------>replication contorller
+  name:  myapp-rc
+  labels:       
+    name:  myapp
+    type:  front-end
+spec:          ----> replication contorller
+  template: 
+    metadata:   ---------->POD
+      name:  myapp-pod
+      labels:       
+        name:  myapp
+        type:  front-end
+    spec:         ----->POD
+      containers:  #list
+        - name:  nginx-container   
+          image: nginx
+  replicas: 3
+#this will deploy 3 pods with labels
+------------------------------------------------------
+Replica Set:
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+  spec:
+    containers:
+      - name: nginx-container
+        image: nginx
+  replicas: 3
+  selector: 
+    matchLabels:
+      type: front-end
+--------------------------------------------------------------
+kubectl create -f <replicaset or controller yaml file>
+#if modify replica set number
+kubectl replace -f <replica yaml file name>
+OR
+#If you use below two commands to increase replicaset , replica set number will increase but yaml file count not updates.
+#it is good to update in yaml file and run above command to update the replicaset. So both yaml and repliacaset will have same number.
+kubectl scale --replicas=6 -f <yaml filename>
+OR
+kubectl scale --replicas=6 replicaset <replicaset name> # get from metadata: name: <replicaset name>
+kubectl get replicaset
+kubectl delete replicaset <name>
+
+
+-------------------------------------------------------------------
+ 
+
 
 
