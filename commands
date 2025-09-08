@@ -24,6 +24,8 @@ spec:
     - name: busybox-container
       image: busybox
 -----------------Commands------------------------
+kubectl get all # will gives all pods,repliaset,deployments etc..
+
 kubectl create -f <yaml filename> #need to create yaml file with pod details
 OR 
 kubectl apply -f <yaml file name>
