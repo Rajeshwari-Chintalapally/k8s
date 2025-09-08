@@ -1,10 +1,36 @@
-Pod:  Containers are encapsulated into a kubernates object. It is a single instance of appliaction.smallest object created in k8s.
+1.Pod:  Containers are encapsulated into a kubernates object. It is a single instance of appliaction.smallest object created in k8s.
       Single pod can have multiple containers and it should have different containers(not same).
        - additional containers use as helper container which used for if application need additional support for configurations or file processing  etc..
       Two containers communicate using local host and share volume
-Replica: Prevent loosing access to application, will maintain more than on pod to run application. To achive high availability.
-Replication contoller: This specifies number of specified pods create/run all time.
+2.Replica: Prevent loosing access to application, will maintain more than on pod to run application. To achive high availability.
+3.Replication contoller: This specifies number of specified pods create/run all time.
                        This also spin pods across nodes.
-Replicaset: new version of replication contorller to achieve replication
-            
+4.Replicaset: new version of replication contorller to achieve replication
+            Monitors the pods health and deploy new pods if required
+            Labels and selectors helps replicaSet to monitor pods. Based on labels and selectors Replicaset can identify which pods this need to monitor.
+-------------------------------------------
+ReplicationController is the older resource used to ensure a specified number of pod replicas are running at any time. 
+It only supports equality-based selectors.
+
+ReplicaSet is the newer, more advanced version that replaces ReplicationController. 
+It supports both equality- and set-based selectors, allowing more flexible pod selection. ReplicaSet is used by Deployments to manage pods.
+
+Summary:
+ReplicaSet is the modern replacement for ReplicationController, offering more features and flexibility. 
+ReplicationController is now deprecated in favor of ReplicaSet.
+--------------------------------------------------------------
+Equality-based selectors in Kubernetes are used to select resources (like pods) based on exact matches of label key-value pairs.            
                        
+selector:
+  matchLabels:
+    app: nginx
+This selector matches pods with the label app=nginx.
+
+Supported operators:
+
+= (equals)
+== (equals)
+!= (not equals)
+Note:
+Equality-based selectors do not support set-based operations like in, notin, or matching multiple values. Those are only available in set-based selectors.
+---------------------------------------------------------------
