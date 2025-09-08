@@ -1,0 +1,10 @@
+Pod:  Containers are encapsulated into a kubernates object. It is a single instance of appliaction.smallest object created in k8s.
+      Single pod can have multiple containers and it should have different containers(not same).
+       - additional containers use as helper container which used for if application need additional support for configurations or file processing  etc..
+      Two containers communicate using local host and share volume
+Replica: Prevent loosing access to application, will maintain more than on pod to run application. To achive high availability.
+Replication contoller: This specifies number of specified pods create/run all time.
+                       This also spin pods across nodes.
+Replicaset: new version of replication contorller to achieve replication
+            
+                       
