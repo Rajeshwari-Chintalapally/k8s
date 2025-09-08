@@ -89,14 +89,18 @@ spec:
 kubectl create -f <replicaset or controller yaml file>
 #if modify replica set number
 kubectl replace -f <replica yaml file name>
+OR 
+kubectl edit rs new-replica-set #if need any changes, it will open file and once you save file it automatically update the changes in file
 OR
-#If you use below two commands to increase replicaset , replica set number will increase but yaml file count not updates.
+#If you use below two commands to increase replicaset , replica set number will increase but yaml file replica count not updates.
 #it is good to update in yaml file and run above command to update the replicaset. So both yaml and repliacaset will have same number.
 kubectl scale --replicas=6 -f <yaml filename>
 OR
 kubectl scale --replicas=6 replicaset <replicaset name> # get from metadata: name: <replicaset name>
 kubectl get replicaset
 kubectl delete replicaset <name>
+kubectl explain replicaset
+
 
 
 -------------------------------------------------------------------
