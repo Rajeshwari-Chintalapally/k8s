@@ -1,0 +1,3 @@
+kubectl create -f <yaml filename> #need to create yaml file with pod details
+kubctl get pods
+kubctl describe pod <podname>
