@@ -27,8 +27,16 @@ spec:
 kubectl create -f <yaml filename> #need to create yaml file with pod details
 OR 
 kubectl apply -f <yaml file name>
+OR 
+kubectl run <yourimagename> --image=<imagename>
 kubectl get pods
+kubectl get pods -o wide
 kubectl describe pod <podname>
+kubectl delete pod <podname>
+kubectl get nodes
+kubectl run redis --image=redis --dry-run=client -o yaml>redis.yaml      #creates redis.yaml file with configurations
+kubectl create -f redis.yaml
+
 --------------------------------------------------
 
 
