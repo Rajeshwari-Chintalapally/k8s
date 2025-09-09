@@ -34,3 +34,28 @@ Supported operators:
 Note:
 Equality-based selectors do not support set-based operations like in, notin, or matching multiple values. Those are only available in set-based selectors.
 ---------------------------------------------------------------
+5. Deployments
+A Deployment in Kubernetes (k8s) is a resource object that manages a set of identical Pods, ensuring the desired number of them are running and up-to-date. Deployments are used for rolling updates, scaling, and rollback of applications.
+
+Key Features
+Declarative updates for Pods and ReplicaSets
+Rollback to previous versions
+Scaling up/down
+Self-healing (replaces failed Pods)
+----------------------------------------------------------
+6. diff between deployemtns and replicase:
+A Deployment and a ReplicaSet are both Kubernetes resources, but they serve different purposes:
+
+ReplicaSet
+Ensures a specified number of pod replicas are running at any time.
+Only manages pod replication (creating, deleting pods).
+Does not provide rolling updates, rollbacks, or declarative updates.
+Usually not used directly; managed by Deployments.
+Deployment
+Manages ReplicaSets and provides declarative updates for Pods.
+Supports rolling updates, rollbacks, and version history.
+Allows you to update your application with zero downtime.
+Recommended way to manage stateless applications.
+Summary:
+A Deployment manages ReplicaSets (and thus Pods), adding features like rolling updates and rollbacks.
+Use Deployments for most use cases; use ReplicaSets directly only for advanced scenarios.
