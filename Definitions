@@ -59,3 +59,17 @@ Recommended way to manage stateless applications.
 Summary:
 A Deployment manages ReplicaSets (and thus Pods), adding features like rolling updates and rollbacks.
 Use Deployments for most use cases; use ReplicaSets directly only for advanced scenarios.
+-------------------------------------------------------------------
+7.Services
+Establish connection between different applications like front and back end etc..
+Different types of services:
+a.Node port - Helps to map port on node and port on pod. whether single node in single pod or single node with multiple pods or multiple nodes with multple node.
+k8s cluster  service creation is same and it will allow node IP to communicate webaapp inside the pod.
+b.ClusterIP - Groups pods in to single type and allow to access the pods in the group. for example all front-end pods as one group then
+provide single interface and back-end pods into one group then provide single interface.
+And clusterIp service establish communication between these two groups. when request comes clusterIP communicate with one of the node randomly and 
+provide access to the webapp running in that pod.
+c.LoadBalancer - when end user want the URL in domain format instead of IP address, it is useful. This serves route traffic from external devices to app
+which deployed in pod. Same as NodePort only difference can leverage using native loadbalancer support like AWS and Google cloud.
+
+
