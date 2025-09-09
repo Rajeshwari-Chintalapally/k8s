@@ -71,5 +71,31 @@ And clusterIp service establish communication between these two groups. when req
 provide access to the webapp running in that pod.
 c.LoadBalancer - when end user want the URL in domain format instead of IP address, it is useful. This serves route traffic from external devices to app
 which deployed in pod. Same as NodePort only difference can leverage using native loadbalancer support like AWS and Google cloud.
+c.Headless Service 
+in Kubernetes is a Service without a cluster IP (clusterIP: None). 
+It allows direct access to the individual Pods behind the Service, rather than load-balancing traffic across them. 
+This is useful for stateful applications like databases, where clients need to connect to specific Pods.
+Headless Services are ideal when you need direct access to individual Pods, such as in clustered databases or stateful applications.
+Use Cases
+StatefulSets: Databases (e.g., Cassandra, MongoDB), where each Pod has a unique identity.
+Direct Pod Discovery: Applications needing to discover and communicate with all Pods individually.
+How It Works
+No virtual IP is assigned.
+DNS queries for the Service return the Pod IPs directly.
+Clients can connect to specific Pods using DNS names like:
+pod-name.my-db-headless.default.svc.cluster.local
 
-
+Services - USE CASES:
+1. ClusterIP (default)
+Use case: Internal communication between Pods (e.g., frontend talks to backend).
+Access: Only within the cluster.
+2. NodePort
+Use case: Expose an app to be accessible from outside the cluster (for development/testing).
+Access: <NodeIP>:30080 from outside the cluster.
+3. LoadBalancer
+Use case: Expose an app to the internet with a cloud provider’s load balancer (production).
+Access: External IP provided by the cloud provider.
+4. Headless Service
+Use case: Direct pod-to-pod communication (e.g., for databases, stateful sets).
+Access: DNS resolves to individual pod IPs.
+---------------------------------------------------------------------------------------------------------
