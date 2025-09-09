@@ -38,6 +38,7 @@ kubectl delete pod <podname>
 kubectl get nodes
 kubectl run redis --image=redis --dry-run=client -o yaml>redis.yaml      #creates redis.yaml file with configurations
 kubectl create -f redis.yaml
+kubectl create <deployment> or <replicaset> or <pod> --help
 
 --------------------------------------------------
 Replication controller:
