@@ -124,7 +124,62 @@ spec:
         ports:
         - containerPort: 80
 -----------------------------------------------------
- 
+Service example:
+apiVersion: v1
+kind: Service
+metadata:
+  name: myappservice
+spec:
+  type: NodePort
+    ports:
+      - targetPort: 80  #pod port
+        port: 80        #service port, this mandatory need to provide
+        nodePort: 30008 #node port, it will range from 30000-32767
+  selector:             #labels of pod need to provide to identify the service
+    name: front-end-app
+    type: front-end
+-------------------------------------------------------------------
+kubectl create -f <service yaml file>
+kubectl get services 
+OR
+kubectl get svc
+-------------------------------------------------------------------
+clusterIP example:
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: ClusterIP #default type in k8s services
+  ports:
+    - targerPort: 80 # backend port
+      port: 80       # service port
+  selector:
+    name: backend-app
+    type:backend
+-----------------------------------
+kubectl create -f <service yaml file>
+---------------------------------------
+LoadBalancer:
+Service example:
+apiVersion: v1
+kind: Service
+metadata:
+  name: myappservice
+spec:
+  type: LoadBalancer
+    ports:
+      - targetPort: 80  #pod port
+        port: 80        #service port, this mandatory need to provide
+        nodePort: 30008 #node port, it will range from 30000-32767
+  selector:             #labels of pod need to provide to identify the service
+    name: front-end-app
+    type: front-end
+-----------------------------------------------------
+
+
+  
+
 
 
 
