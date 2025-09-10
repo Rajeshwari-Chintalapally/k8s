@@ -99,3 +99,23 @@ Access: External IP provided by the cloud provider.
 Use case: Direct pod-to-pod communication (e.g., for databases, stateful sets).
 Access: DNS resolves to individual pod IPs.
 ---------------------------------------------------------------------------------------------------------
+8. Namespace
+In Kubernetes (k8s), Namespaces are a way to divide cluster resources between multiple users or teams. 
+They provide a mechanism for isolating groups of resources within a single cluster.
+Key Points about Namespaces:
+Isolation: Resources in different namespaces are isolated from each other.
+Resource Quotas: You can set resource limits (CPU, memory) per namespace.
+Name Scoping: Resource names (like pods, services) must be unique within a namespace, but not across namespaces.
+Default Namespace: If you don’t specify a namespace, resources are created in the default namespace.
+Common Namespaces
+default: The default namespace for objects with no other namespace.
+kube-system: For Kubernetes system components.
+kube-public: Readable by all users (including unauthenticated users).
+kube-node-lease: For node heartbeats.
+#one resource in one namespace can communicate from another namespace
+mysql.connect("<servicename>.<namespace name>.svc.cluster.local")
+Here- cluster.local is kuberanates default domain
+      svc is service
+      
+--------------------------------------------------------------------------------------------------------
+
