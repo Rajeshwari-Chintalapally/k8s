@@ -189,6 +189,11 @@ kubectl get pods -n my-namespace
 To switch to particluar namespace permanently:
 kubectl config set-context $(kubectl config current-context) --namespace=dev
 kubectl get pods --all-namespaces
+or kubectl get pods A
+kubectl get svc -n=finance
+#to create pod in one namespace
+kubectl run <podname> --image=<image> -n=finance -o yaml > redis.yaml
+
 -------------------------------------------------------
 Can limit the resources in namespaces:
 apiVersion: v1
