@@ -176,6 +176,34 @@ spec:
     name: front-end-app
     type: front-end
 -----------------------------------------------------
+Example: Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-namespace
+------------------------------------------------------
+kubectl get namespaces
+or kubectl get ns
+kubectl create namespace my-namespace
+kubectl get pods -n my-namespace
+To switch to particluar namespace permanently:
+kubectl config set-context $(kubectl config current-context) --namespace=dev
+kubectl get pods --all-namespaces
+-------------------------------------------------------
+Can limit the resources in namespaces:
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: compute-quota
+  namespace:dev
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "4"
+    requests.memory: 5Gi
+    limits.cpu: "10"
+    limits.memory: 10Gi
+---------------------------------------------------------------
 
 
   
